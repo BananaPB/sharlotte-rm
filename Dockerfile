@@ -11,8 +11,6 @@ COPY . .
 
 EXPOSE 3000
 
-ENV CHOKIDAR_USEPOLLING=true
-
 CMD ["npm", "run", "start:dev"]
 
 # Production stage
