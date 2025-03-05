@@ -14,7 +14,7 @@ export class UsersService {
         return this.userRepository.find();
     }
 
-    async findOne(id: number): Promise<User> {
+    async findOne(id: string): Promise<User> {
         const user = await this.userRepository.findOne({ where: { id } });
         if (!user) {
             throw new NotFoundException('User not found');
@@ -27,7 +27,7 @@ export class UsersService {
         return this.userRepository.save(newuser);
     }
 
-    async update(id: number, user: Partial<User>): Promise<User> {
+    async update(id: string, user: Partial<User>): Promise<User> {
         const update = await this.userRepository.update(id, user);
         if (update.affected === 0) {
             throw new NotFoundException('User not found');
@@ -40,7 +40,7 @@ export class UsersService {
         return updatedUser;
     }
 
-    async delete(id: number): Promise<void> {
+    async delete(id: string): Promise<void> {
         await this.userRepository.delete(id);
     }
 }

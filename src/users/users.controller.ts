@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './user.entity';
 
@@ -12,7 +12,7 @@ export class UsersController {
     }   
 
     @Get(':id')
-    async findOne(@Param('id', ParseIntPipe) id: number): Promise<User>{
+    async findOne(@Param('id') id: string): Promise<User>{
         return this.usersService.findOne(id);
     }
 
@@ -22,12 +22,12 @@ export class UsersController {
     }
 
     @Put(':id')
-    async update(@Param('id') id: number, @Body() user: User): Promise<User> {
+    async update(@Param('id') id: string, @Body() user: User): Promise<User> {
         return this.usersService.update(id, user);
     }
 
     @Delete(':id')
-    async delete(@Param('id') id: number): Promise<void> {
+    async delete(@Param('id') id: string): Promise<void> {
         return this.usersService.delete(id);
     }
 }
